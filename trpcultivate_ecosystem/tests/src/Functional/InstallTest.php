@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\Tests\modulename\Functional;
+namespace Drupal\Tests\trpcultivate_ecosystem\Functional;
 
 use Drupal\Core\Url;
 use Drupal\Tests\tripal_chado\Functional\ChadoTestBrowserBase;
@@ -32,18 +32,18 @@ class InstallTest extends ChadoTestBrowserBase {
   /**
    * The name of your module in the .info.yml
    */
-  protected static $module_name = 'Template Modulename';
+  protected static $module_name = 'Ecosystem Survey';
 
   /**
    * The machine name of this module.
    */
-  protected static $module_machinename = 'modulename';
+  protected static $module_machinename = 'trpcultivate_ecosystem';
 
   /**
    * A small excert from your help page.
    * Do not cross newlines.
    */
-  protected static $help_text_excerpt = 'This is a template module which should never be';
+  protected static $help_text_excerpt = 'content types, fields and importers focused on surveying ecosystem plants and insects.';
 
   /**
    * {@inheritdoc}
@@ -60,8 +60,8 @@ class InstallTest extends ChadoTestBrowserBase {
 
     $moduleHandler = $this->container->get('module_handler');
     $moduleInstaller = $this->container->get('module_installer');
-    $this->assertFalse($moduleHandler->moduleExists('modulename'));
-    $this->assertTrue($moduleInstaller->install(['modulename']));
+    $this->assertFalse($moduleHandler->moduleExists('trpcultivate_ecosystem'));
+    $this->assertTrue($moduleInstaller->install(['trpcultivate_ecosystem']));
   }
 
   /**

@@ -1,7 +1,7 @@
-name: Template Modulename
+name: Ecosystem Survey
 type: module
-description: A template module which should never be available on a production site.
-package: "Placeholder"
+description: Provides content types, fields and importers focused on surveying ecosystem plants and insects.
+package: "TripalCultivate: Ecosystems"
 core_version_requirement: ^10
 dependencies:
   - tripal:tripal

@@ -1,0 +1,30 @@
+{
+  "name": "tripalcultivate/ecosystem",
+  "type": "drupal-module",
+  "description": "A Tripal extension module that provides generic support for surveying the ecosystem including native forage grasses, microbiomes and insect populations.",
+  "keywords": [
+    "tripal",
+    "drupal",
+    "biological-data",
+    "data-import"
+  ],
+  "homepage": "https://github.com/TripalCultivate/TripalCultivate-Ecosystem",
+  "support": {
+    "issues": "https://github.com/TripalCultivate/TripalCultivate-Ecosystem/issues"
+  },
+  "license": "GPL-3.0-or-later",
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Lacey-Anne Sanderson",
+      "homepage": "https://github.com/laceysanderson/",
+      "role": "Lead Developer"
+    }
+  ],
+  "require": {
+    "php": "^8.1",
+    "drupal/core": "^10.0",
+    "tripal/tripal": "^4.0-alpha1",
+    "tripalcultivate/base": "*"
+  }
+}

@@ -1,25 +1,16 @@
-# Tripal Cultivate: DATATYPE
+# Tripal Cultivate: Ecosystem
 
 **Developed by the University of Saskatchewan, Pulse Crop Bioinformatics team.**
 
-**NOTE: This package will replace the following Tripal v3 modules: ADD LINKS TO MODULES THIS WILL REPLACE.**
-
 <!-- Summarize the main features of this package in point form below. -->
 
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-- Pellentesque condimentum, lectus pretium auctor consequat, quam urna tempor ipsum, ac eleifend neque tellus sed arcu.
-
-    - Sed bibendum congue tortor, eget auctor est tempor ut.
-    - In euismod risus in consectetur auctor.
-
-- Pellentesque et tristique eros. Suspendisse ac venenatis orci. Etiam feugiat elit ante, at tempus tellus pellentesque viverra.
-- Suspendisse eu mollis eros. Pellentesque laoreet consequat tincidunt.
+- Provides content types and fields focused on ecosystem surveys, microbiomes, and sample collection.
 
 ## Citation
 
 If you use this module in your Tripal site, please use this citation to reference our work any place where you described your resulting Tripal site. For example, if you publish your site in a journal then this citation should be in the reference section and anywhere functionality provided by this module is discussed in the above text should reference it.
 
-> AUTHORS (CURRENTYEAR). MODULE NAME WITH TAGLINE. Development Version. University of Saskatchewan, Pulse Crop Research Group, Saskatoon, SK, Canada.
+> Sanderson LA (2024). TripalCultivate Ecosystem: get the complete picture. Development Version. University of Saskatchewan, Pulse Crop Research Group, Saskatoon, SK, Canada.
 
 
 ## Technology Stack
@@ -28,6 +19,7 @@ If you use this module in your Tripal site, please use this citation to referenc
 
 - Drupal
 - Tripal 4.x
+- TripalCultivate Base
 - PostgreSQL
 - PHP
 - Apache2
@@ -50,16 +42,16 @@ The following compatibility is proven via automated testing workflows.
 | **PHP 8.2** | ![Grid2A-Badge] | ![Grid2B-Badge] | ![Grid2C-Badge] |
 | **PHP 8.3** |                 |                 | ![Grid3C-Badge] |
 
-[our CodeClimate project page]: https://github.com/TripalCultivate/Template
+[our CodeClimate project page]: https://github.com/TripalCultivate/TripalCultivate-Ecosystem
 [MaintainabilityBadge]: https://api.codeclimate.com/v1/badges/5d139ad7af5a3e2564ab/maintainability
 [TestCoverageBadge]: https://api.codeclimate.com/v1/badges/5d139ad7af5a3e2564ab/test_coverage
 
-[Grid1A-Badge]: https://github.com/TripalCultivate/Template/actions/workflows/MAIN-phpunit-Grid1A.yml/badge.svg
-[Grid1B-Badge]: https://github.com/TripalCultivate/Template/actions/workflows/MAIN-phpunit-Grid1B.yml/badge.svg
-[Grid1C-Badge]: https://github.com/TripalCultivate/Template/actions/workflows/MAIN-phpunit-Grid1C.yml/badge.svg
+[Grid1A-Badge]: https://github.com/TripalCultivate/TripalCultivate-Ecosystem/actions/workflows/MAIN-phpunit-Grid1A.yml/badge.svg
+[Grid1B-Badge]: https://github.com/TripalCultivate/TripalCultivate-Ecosystem/actions/workflows/MAIN-phpunit-Grid1B.yml/badge.svg
+[Grid1C-Badge]: https://github.com/TripalCultivate/TripalCultivate-Ecosystem/actions/workflows/MAIN-phpunit-Grid1C.yml/badge.svg
 
-[Grid2A-Badge]: https://github.com/TripalCultivate/Template/actions/workflows/MAIN-phpunit-Grid2A.yml/badge.svg
-[Grid2B-Badge]: https://github.com/TripalCultivate/Template/actions/workflows/MAIN-phpunit-Grid2B.yml/badge.svg
-[Grid2C-Badge]: https://github.com/TripalCultivate/Template/actions/workflows/MAIN-phpunit-Grid2C.yml/badge.svg
+[Grid2A-Badge]: https://github.com/TripalCultivate/TripalCultivate-Ecosystem/actions/workflows/MAIN-phpunit-Grid2A.yml/badge.svg
+[Grid2B-Badge]: https://github.com/TripalCultivate/TripalCultivate-Ecosystem/actions/workflows/MAIN-phpunit-Grid2B.yml/badge.svg
+[Grid2C-Badge]: https://github.com/TripalCultivate/TripalCultivate-Ecosystem/actions/workflows/MAIN-phpunit-Grid2C.yml/badge.svg
 
-[Grid3C-Badge]: https://github.com/TripalCultivate/Template/actions/workflows/MAIN-phpunit-Grid3C.yml/badge.svg
+[Grid3C-Badge]: https://github.com/TripalCultivate/TripalCultivate-Ecosystem/actions/workflows/MAIN-phpunit-Grid3C.yml/badge.svg

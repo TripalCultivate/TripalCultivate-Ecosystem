@@ -3,8 +3,8 @@ name: Test Coverage
 on: [push, workflow_dispatch]
 
 env:
-  PKG_NAME: template
-  MODULES: "modulename"
+  PKG_NAME: TripalCultivate-Ecosystem
+  MODULES: "trpcultivate_ecosystem"
   DRUPALVER: "10.2.x-dev"
   PHPVER: "8.3"
   SIMPLETEST_BASE_URL: "http://localhost"

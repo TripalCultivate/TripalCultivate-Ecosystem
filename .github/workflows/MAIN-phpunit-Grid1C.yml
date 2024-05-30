@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - 4.x
-      - updateTemplate
   # Allows us to manually trigger this workflow.
   # This is great if there is a change made to Tripal core that we want to test our modules on ASAP.
   workflow_dispatch:
@@ -22,8 +21,8 @@ jobs:
       - name: Run Automated testing
         uses: tripal/test-tripal-action@v1.3
         with:
-          directory-name: 'template'
-          modules: 'modulename'
+          directory-name: 'TripalCultivate-Ecosystem'
+          modules: 'trpcultivate_ecosystem'
           php-version: '8.1'
           pgsql-version: '13'
           drupal-version: '10.2.x-dev'

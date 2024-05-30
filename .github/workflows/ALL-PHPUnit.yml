@@ -14,8 +14,8 @@ on:
     - cron: '0 2 * * *'
 
 env:
-  PKG_NAME: template
-  MODULES: "modulename"
+  PKG_NAME: TripalCultivate-Ecosystem
+  MODULES: "trpcultivate_ecosystem"
 
 jobs:
   run-tests:

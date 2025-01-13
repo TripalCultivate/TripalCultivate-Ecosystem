@@ -33,4 +33,4 @@ jobs:
           modules: 'trpcultivate_ecosystem'
           php-version: '8.3'
           pgsql-version: '16'
-          drupal-version: '10.5.x-dev'
+          drupal-version: '11.1.x-dev'

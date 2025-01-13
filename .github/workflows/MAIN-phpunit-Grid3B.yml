@@ -31,6 +31,6 @@ jobs:
         with:
           directory-name: 'TripalCultivate-Ecosystem'
           modules: 'trpcultivate_ecosystem'
-          php-version: '8.3'
+          php-version: '8.2'
           pgsql-version: '16'
           drupal-version: '10.5.x-dev'

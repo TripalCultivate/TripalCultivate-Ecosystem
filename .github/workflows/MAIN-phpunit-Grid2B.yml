@@ -32,6 +32,8 @@ jobs:
         with:
           directory-name: 'TripalCultivate-Ecosystem'
           modules: 'trpcultivate_ecosystem'
+          build-image: TRUE
+          dockerfile: 'Dockerfile'
           php-version: '8.2'
           pgsql-version: '16'
           drupal-version: '10.4.x-dev'

@@ -55,8 +55,8 @@ The following compatibility is proven via automated testing workflows.
 [Grid2B-Badge]: https://github.com/TripalCultivate/TripalCultivate-Ecosystem/actions/workflows/MAIN-phpunit-Grid2B.yml/badge.svg
 [Grid2C-Badge]: https://github.com/TripalCultivate/TripalCultivate-Ecosystem/actions/workflows/MAIN-phpunit-Grid2C.yml/badge.svg
 
-[Grid2A-Badge]: https://github.com/TripalCultivate/TripalCultivate-Ecosystem/actions/workflows/MAIN-phpunit-Grid3A.yml/badge.svg
-[Grid2B-Badge]: https://github.com/TripalCultivate/TripalCultivate-Ecosystem/actions/workflows/MAIN-phpunit-Grid3B.yml/badge.svg
+[Grid3A-Badge]: https://github.com/TripalCultivate/TripalCultivate-Ecosystem/actions/workflows/MAIN-phpunit-Grid3A.yml/badge.svg
+[Grid3B-Badge]: https://github.com/TripalCultivate/TripalCultivate-Ecosystem/actions/workflows/MAIN-phpunit-Grid3B.yml/badge.svg
 [Grid3C-Badge]: https://github.com/TripalCultivate/TripalCultivate-Ecosystem/actions/workflows/MAIN-phpunit-Grid3C.yml/badge.svg
 
 [Grid4C-Badge]: https://github.com/TripalCultivate/TripalCultivate-Ecosystem/actions/workflows/MAIN-phpunit-Grid4C.yml/badge.svg

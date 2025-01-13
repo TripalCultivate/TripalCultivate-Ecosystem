@@ -2,7 +2,9 @@
 
 namespace Drupal\Tests\trpcultivate_ecosystem\Functional;
 
+use Drupal\Core\Routing\RouteMatch;
 use Drupal\Core\Url;
+use Drupal\tripal_chado\Database\ChadoConnection;
 use Drupal\Tests\tripal_chado\Functional\ChadoTestBrowserBase;
 
 /**
@@ -13,14 +15,19 @@ use Drupal\Tests\tripal_chado\Functional\ChadoTestBrowserBase;
  */
 class InstallTest extends ChadoTestBrowserBase {
 
+  /**
+   * The theme to use when testing.
+   *
+   * @var string
+   */
   protected $defaultTheme = 'stark';
 
   /**
-   * The service for retreiving a connection with Chado.
+   * A Database query interface for querying Chado using Tripal DBX.
    *
-   * @var Drupal\tripal_chado\Database\ChadoConnection
+   * @var \Drupal\tripal_chado\Database\ChadoConnection
    */
-  protected $connection;
+  protected ChadoConnection $chado_connection;
 
   /**
    * Modules to enable.
@@ -30,20 +37,27 @@ class InstallTest extends ChadoTestBrowserBase {
   protected static $modules = ['help', 'tripal_chado'];
 
   /**
-   * The name of your module in the .info.yml
+   * The name of your module in the .info.yml.
+   *
+   * @var string
    */
-  protected static $module_name = 'Ecosystem Survey';
+  protected static string $module_name = 'Ecosystem Survey';
 
   /**
    * The machine name of this module.
+   *
+   * @var string
    */
-  protected static $module_machinename = 'trpcultivate_ecosystem';
+  protected static string $module_machinename = 'trpcultivate_ecosystem';
 
   /**
    * A small excert from your help page.
+   *
    * Do not cross newlines.
+   *
+   * @var string
    */
-  protected static $help_text_excerpt = 'content types, fields and importers focused on surveying ecosystem plants and insects.';
+  protected static string $help_text_excerpt = 'content types, fields and importers focused on surveying ecosystem plants and insects.';
 
   /**
    * {@inheritdoc}
@@ -55,8 +69,8 @@ class InstallTest extends ChadoTestBrowserBase {
     // Ensure we see all logging in tests.
     \Drupal::state()->set('is_a_test_environment', TRUE);
 
-    // Open connection to Chado
-    $this->connection = $this->getTestSchema(ChadoTestBrowserBase::PREPARE_TEST_CHADO);
+    // Open connection to Chado.
+    $this->chado_connection = $this->getTestSchema(ChadoTestBrowserBase::PREPARE_TEST_CHADO);
 
     $moduleHandler = $this->container->get('module_handler');
     $moduleInstaller = $this->container->get('module_installer');
@@ -98,10 +112,7 @@ class InstallTest extends ChadoTestBrowserBase {
     $some_expected_text = self::$help_text_excerpt;
 
     // Ensure we have an admin user.
-    $permissions = ['access administration pages', 'administer modules'];
-    if (strncmp(\Drupal::VERSION, '10.2', 4) === 0) {
-      $permissions[] = 'access help pages';
-    }
+    $permissions = ['access administration pages', 'administer modules', 'access help pages'];
     $user = $this->drupalCreateUser($permissions);
     $this->drupalLogin($user);
 
@@ -109,7 +120,7 @@ class InstallTest extends ChadoTestBrowserBase {
 
     // Call the hook to ensure it is returning text.
     $name = 'help.page.' . $this::$module_machinename;
-    $match = $this->createStub(\Drupal\Core\Routing\RouteMatch::class);
+    $match = $this->createStub(RouteMatch::class);
     $hook_name = self::$module_machinename . '_help';
     $output = $hook_name($name, $match);
     $this->assertNotEmpty($output, "The help hook should return output $context.");

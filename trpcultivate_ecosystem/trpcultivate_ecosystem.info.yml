@@ -2,7 +2,8 @@ name: Ecosystem Survey
 type: module
 description: Provides content types, fields and importers focused on surveying ecosystem plants and insects.
 package: "TripalCultivate: Ecosystems"
-core_version_requirement: ^10
+core_version_requirement: ^10 | ^11
 dependencies:
   - tripal:tripal
   - tripal:tripal_chado
+  - tripalcultivate:trpcultivate

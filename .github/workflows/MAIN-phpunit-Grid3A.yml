@@ -34,6 +34,6 @@ jobs:
           modules: 'trpcultivate_ecosystem'
           build-image: TRUE
           dockerfile: 'Dockerfile'
-          php-version: '8.2'
+          php-version: '8.1'
           pgsql-version: '16'
-          drupal-version: '10.4.x-dev'
+          drupal-version: '10.5.x-dev'

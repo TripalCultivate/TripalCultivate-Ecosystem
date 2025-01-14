@@ -190,6 +190,26 @@ function trpcultivate_ecosystem_create_relationship_fields() {
         'termIdSpace' => 'SIO',
         'termAccession' => '001066',
       ],
+      'field_sites' => [
+        'target' => [
+          'grassland_site' => 'grassland_site',
+        ],
+        'label' => 'Grassland Sites',
+        'description' => 'Indicate the sites being surveyed as part of this experiment. Note: you must register the "Native Grassland Sites" with this resource first.',
+        'termIdSpace' => 'local',
+        'termAccession' => 'grassland_site',
+      ],
+    ],
+    'grassland_site' => [
+      'field_surveys' => [
+        'target' => [
+          'ecosystem_survey' => 'ecosystem_survey',
+        ],
+        'label' => 'Ecosystem Survey',
+        'description' => 'Indicate any ecosystem surveys being done on this native grassland site.',
+        'termIdSpace' => 'local',
+        'termAccession' => 'grassland_site',
+      ],
     ],
   ];
   foreach ($relationships_needed as $base_content_type => $fields2create) {
@@ -246,36 +266,53 @@ function trpcultivate_ecosystem_create_relationship_fields() {
 function trpcultivate_ecosystem_apply_layout() {
   $entity_type_manager = \Drupal::service('entity_type.manager');
 
-  $bundle = 'ecosystem_survey';
-  $content_type = $entity_type_manager->getStorage('tripal_entity_type')->load($bundle);
+  $bundles = ['ecosystem_survey', 'grassland_site'];
+  foreach ($bundles as $bundle) {
+    $content_type = $entity_type_manager->getStorage('tripal_entity_type')->load($bundle);
 
-  // Automatically apply both layouts.
-  $controller = new TripalEntityUILayoutController();
-  $controller->applyViewLayout($content_type);
-  $controller->applyFormLayout($content_type);
+    // Automatically apply both layouts.
+    $controller = new TripalEntityUILayoutController();
+    $controller->applyViewLayout($content_type);
+    $controller->applyFormLayout($content_type);
 
-  // Now modify the form display.
-  $config_entity_storage = $entity_type_manager->getStorage('entity_form_display');
-  $display = $config_entity_storage->load('tripal_entity.' . $bundle . '.default');
+    // Now modify the form display.
+    $config_entity_storage = $entity_type_manager->getStorage('entity_form_display');
+    $display = $config_entity_storage->load('tripal_entity.' . $bundle . '.default');
 
-  // -- Ensure only the objectives vertical tab is open by default.
-  $field_groups = $display->getThirdPartySettings('field_group');
-  foreach ($field_groups as $id => $group) {
-    if ($group['format_type'] === 'tab' && $id !== 'exp-tab-objectives') {
-      $group['format_settings']['formatter'] = 'closed';
-      $display->setThirdPartySetting('field_group', $id, $group);
+    // -- Ensure only the objectives vertical tab is open by default.
+    $field_groups = $display->getThirdPartySettings('field_group');
+    foreach ($field_groups as $id => $group) {
+      if ($group['format_type'] === 'tab' && $id !== 'exp-tab-objectives') {
+        $group['format_settings']['formatter'] = 'closed';
+        $display->setThirdPartySetting('field_group', $id, $group);
+      }
     }
-  }
 
-  // -- Set a number of properties to be smaller with no format toolbar.
-  $property_fields = ['exp_objectives', 'exp_hypothesis'];
-  foreach ($property_fields as $component_name) {
-    $options = $display->getComponent($component_name);
-    $options['settings']['filter_format'] = 'plain_text';
-    $options['settings']['num_rows'] = 2;
-    $display->setComponent($component_name, $options);
-  }
+    // -- Set a number of properties to use the "Short Text" widget.
+    $property_fields = [];
+    if ($bundle == 'grassland_site') {
+      $property_fields = ['site_location'];
+    }
+    foreach ($property_fields as $component_name) {
+      $options = $display->getComponent($component_name);
+      $options['type'] = 'chado_property_string_widget_default';
+      $options['settings'] = [];
+      $display->setComponent($component_name, $options);
+    }
 
-  // -- Finally save it.
-  $display->save();
+    // -- Set a number of properties to be smaller with no format toolbar.
+    $property_fields = [];
+    if ($bundle == 'ecosystem_survey') {
+      $property_fields = ['exp_objectives', 'exp_hypothesis'];
+    }
+    foreach ($property_fields as $component_name) {
+      $options = $display->getComponent($component_name);
+      $options['settings']['filter_format'] = 'plain_text';
+      $options['settings']['num_rows'] = 2;
+      $display->setComponent($component_name, $options);
+    }
+
+    // -- Finally save it.
+    $display->save();
+  }
 }

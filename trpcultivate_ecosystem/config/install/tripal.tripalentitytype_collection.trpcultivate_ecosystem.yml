@@ -16,7 +16,7 @@ content_types:
         help_text: Use to describe the grassland site from which samples were collected.
         category: "Ecosystem"
         id: grassland_site
-        title_format: "[experiment_name]"
+        title_format: "[site_name]"
         url_format: "grassland-site/[TripalEntity__entity_id]"
 
     -   label: Ecosystem Sample Plot
@@ -24,7 +24,7 @@ content_types:
         help_text: Use to describe a specific region of a grassland site from which samples were taken.
         category: "Ecosystem"
         id: sample_plot
-        title_format: "[experiment_name]"
+        title_format: "[plot_name]"
         url_format: "sample-plot/[TripalEntity__entity_id]"
 
     -   label: Plant Sample
@@ -32,7 +32,7 @@ content_types:
         help_text: Use to register a plant material sample with the system. This will be linked to an existing Ecosystem sample plot.
         category: "Samples"
         id: plant_sample
-        title_format: "[experiment_name]"
+        title_format: "[sample_name]"
         url_format: "sample/plant/[TripalEntity__entity_id]"
 
     -   label: Soil Sample
@@ -40,7 +40,7 @@ content_types:
         help_text: Use to register a soil sample with the system. This will be linked to an existing Ecosystem sample plot.
         category: "Samples"
         id: soil_sample
-        title_format: "[experiment_name]"
+        title_format: "[sample_name]"
         url_format: "sample/soil/[TripalEntity__entity_id]"
 
     -   label: Insect Sample
@@ -48,7 +48,7 @@ content_types:
         help_text: Use to register a insect material sample with the system. This will be linked to an existing Ecosystem sample plot.
         category: "Samples"
         id: insect_sample
-        title_format: "[experiment_name]"
+        title_format: "[sample_name]"
         url_format: "sample/insect/[TripalEntity__entity_id]"
 
     -   label: Microbiome Sample
@@ -56,5 +56,5 @@ content_types:
         help_text: Use to register a microbiome sample with the system. This will be linked to an existing soil sample.
         category: "Samples"
         id: microbiome_sample
-        title_format: "[experiment_name]"
+        title_format: "[sample_name]"
         url_format: "sample/microbiome/[TripalEntity__entity_id]"

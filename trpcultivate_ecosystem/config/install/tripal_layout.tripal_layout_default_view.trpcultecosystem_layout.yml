@@ -53,18 +53,14 @@ layouts:
       #     - "exp_featureofinterest"
       #     - "exp_pheno_method"
       #     - "exp_bchem_assayprotocal"
-      # - id: experiment_design
-      #   type: details
-      #   label: "Experimental Design"
-      #   weight: 4
-      #   show_empty: false
-      #   open: true
-      #   children:
-      #     - "exp_site_locations"
-      #     - "exp_timepoints"
-      #     - "exp_pot_growingmedia"
-      #     - "exp_bchem_technique"
-      #     - "exp_design"
+      - id: experiment_design
+        type: details
+        label: "Experimental Design"
+        weight: 4
+        show_empty: false
+        open: true
+        children:
+          - "field_sites"
       - id: experiment_people
         type: details
         label: "Researchers"
@@ -94,3 +90,20 @@ layouts:
           - "experiment_people"
           - "exp_pub"
           - "experiment_funding"
+
+  - tripal_entity_type: "grassland_site"
+    hidden:
+      - uid
+      - title
+      - site_name
+      - site_type
+    field_groups:
+      - id: site-core
+        label: "Core Metadata"
+        type: details
+        open: true
+        children:
+          - site_dbxref
+          - site_location
+          - field_surveys
+          - site_description

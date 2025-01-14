@@ -5,8 +5,56 @@ content_types:
 
     -   label: Ecosystem Survey
         term: 'BLH-ACTI:M0H846B9-S'
-        help_text: Use to describe experiments collecting phenomic measurements on samples obtained using ecosystem survey techniques.'
+        help_text: Use to describe experiments collecting phenomic measurements on samples obtained using ecosystem survey techniques.
         category: "Ecosystem"
         id: ecosystem_survey
         title_format: "[experiment_name]"
         url_format: "experiment/[TripalEntity__entity_id]"
+
+    -   label: Native Grassland Site
+        term: 'local:grassland_site'
+        help_text: Use to describe the grassland site from which samples were collected.
+        category: "Ecosystem"
+        id: grassland_site
+        title_format: "[experiment_name]"
+        url_format: "grassland-site/[TripalEntity__entity_id]"
+
+    -   label: Ecosystem Sample Plot
+        term: 'local:sample_plot'
+        help_text: Use to describe a specific region of a grassland site from which samples were taken.
+        category: "Ecosystem"
+        id: sample_plot
+        title_format: "[experiment_name]"
+        url_format: "sample-plot/[TripalEntity__entity_id]"
+
+    -   label: Plant Sample
+        term: 'local:plant_sample'
+        help_text: Use to register a plant material sample with the system. This will be linked to an existing Ecosystem sample plot.
+        category: "Samples"
+        id: plant_sample
+        title_format: "[experiment_name]"
+        url_format: "sample/plant/[TripalEntity__entity_id]"
+
+    -   label: Soil Sample
+        term: 'local:soil_sample'
+        help_text: Use to register a soil sample with the system. This will be linked to an existing Ecosystem sample plot.
+        category: "Samples"
+        id: soil_sample
+        title_format: "[experiment_name]"
+        url_format: "sample/soil/[TripalEntity__entity_id]"
+
+    -   label: Insect Sample
+        term: 'local:insect_sample'
+        help_text: Use to register a insect material sample with the system. This will be linked to an existing Ecosystem sample plot.
+        category: "Samples"
+        id: insect_sample
+        title_format: "[experiment_name]"
+        url_format: "sample/insect/[TripalEntity__entity_id]"
+
+    -   label: Microbiome Sample
+        term: 'local:microbiome_sample'
+        help_text: Use to register a microbiome sample with the system. This will be linked to an existing soil sample.
+        category: "Samples"
+        id: microbiome_sample
+        title_format: "[experiment_name]"
+        url_format: "sample/microbiome/[TripalEntity__entity_id]"

@@ -10,11 +10,16 @@ fields:
 ## Related: projectprop, project_pub, project_relationship
 ##          array_project, nd_experiment_project, project_analysis, project_contact, project_dbxref, project_feature, project_stock
 
-    -   name: experiment_name
+
+### -------------------------------------------------------------------------
+## CORE
+###
+
+    -   name: exp_name
         content_type: ecosystem_survey
         label: Name
         type: chado_string_type_default
-        description: The name of the field experiment. It is recommended the name include important details such as siteyears, crop and germplasm collection.
+        description: 'The full name of the experiment. Please see the recommendations above and be as conscise as possible while maintaining uniqueness.'
         cardinality: 1
         required: true
         storage_settings:
@@ -33,10 +38,8 @@ fields:
           form:
             default:
               region: content
-              weight: 1
 
-
-    -   name: experiment_dbxref
+    -   name: exp_dbxref
         content_type: ecosystem_survey
         label: Digital object identifiers (DOI)
         type: chado_dbxref_type_default
@@ -51,21 +54,154 @@ fields:
                 linker_fkey_column: dbxref_id
         settings:
             termIdSpace: SBO
-            termAccession: "0000552"
+            termAccession: '0000552'
+        display:
+          view:
+            default:
+              region: hidden
+          form:
+            default:
+              region: content
+
+### -------------------------------------------------------------------------
+## OVERVIEW
+###
+
+    -   name: exp_objectives
+        content_type: ecosystem_survey
+        label: Objectives
+        type: chado_property_type_default
+        description: The objectives of this experiment. These should be the questions you are trying to answer by conducting this experiment. For example, "Determine the prevalence of my species of interest occuring naturally in Canadian grassland ecosystems."
+        cardinality: -1
+        required: false
+        storage_settings:
+            storage_plugin_id: chado_storage
+            storage_plugin_settings:
+                base_table: project
+                prop_table: projectprop
+        settings:
+            termIdSpace: SIO
+            termAccession: '000337'
         display:
           view:
             default:
               region: content
               label: above
-              weight: 19
           form:
             default:
               region: content
-              weight: 19
 
-    ## ATTRIBUTION FIELDS
+    -   name: exp_hypothesis
+        content_type: ecosystem_survey
+        label: Hypotheses
+        type: chado_property_type_default
+        description: The hypotheses of this experiment. These should be well founded predictions of the possible outcome of your objectives.
+        cardinality: -1
+        required: false
+        storage_settings:
+            storage_plugin_id: chado_storage
+            storage_plugin_settings:
+                base_table: project
+                prop_table: projectprop
+        settings:
+            termIdSpace: SIO
+            termAccession: '000284'
+        display:
+          view:
+            default:
+              region: content
+              label: above
+          form:
+            default:
+              region: content
 
-    -   name: experiment_datacollector
+    -   name: exp_description
+        content_type: ecosystem_survey
+        label: Experiment Summary
+        type: chado_text_type_default
+        description: A high level summary of the experiment, similar to the abstract of a article.
+        cardinality: 1
+        required: false
+        storage_settings:
+            storage_plugin_id: chado_storage
+            storage_plugin_settings:
+                base_table: project
+                base_column: description
+        settings:
+            termIdSpace: schema
+            termAccession: description
+        display:
+          view:
+            default:
+              region: content
+              label: hidden
+          form:
+            default:
+              region: content
+
+### -------------------------------------------------------------------------
+## STATIC
+###
+
+    -   name: experiment_type
+        content_type: ecosystem_survey
+        label: Type
+        type: chado_additional_type_type_default
+        description: The type of experiment. This is fixed for a single content type but is needed in the underlying data storage.
+        cardinality: 1
+        required: true
+        storage_settings:
+            storage_plugin_id: chado_storage
+            storage_plugin_settings:
+                base_table: project
+                type_table: project
+                type_column: type_id
+        settings:
+            termIdSpace: rdfs
+            termAccession: type
+            fixed_value: "BLH-ACTI:M0H846B9-S"
+        display:
+          view:
+            default:
+              region: hidden
+          form:
+            default:
+              region: content
+              weight: 3
+
+### -------------------------------------------------------------------------
+## GERMPLASM
+###
+
+    # -   name: exp_germspecies
+    #     content_type: ecosystem_survey
+    #     label: Germplasm Scientific Name
+    #     type: chado_property_type_default
+    #     description: The scientific name of the germplasm species (e.g. Lens culinaris) that data was collected for (i.e. that the experiment was done on). If data was collected for multiple species, then each species should be added as its own entry.
+    #     cardinality: -1
+    #     required: false
+    #     storage_settings:
+    #         storage_plugin_id: chado_storage
+    #         storage_plugin_settings:
+    #             base_table: project
+    #             prop_table: projectprop
+    #     settings:
+    #         termIdSpace: TAXRANK
+    #         termAccession: '0000006'
+    #     display:
+    #       view:
+    #         default:
+    #           region: content
+    #           label: inline
+    #       form:
+    #         default:
+    #           region: content
+
+### -------------------------------------------------------------------------
+## PEOPLE
+###
+
+    -   name: exp_datacollector
         content_type: ecosystem_survey
         label: Data Collector
         type: chado_contact_by_role_type_default
@@ -80,23 +216,21 @@ fields:
                 linker_fkey_column: contact_id
         settings:
             termIdSpace: AGRO
-            termAccession: 00000379
+            termAccession: '00000379'
         display:
           view:
             default:
               region: content
-              label: above
-              weight: 20
+              label: inline
           form:
             default:
               region: content
-              weight: 20
 
-    -   name: experiment_custodian
+    -   name: exp_custodian
         content_type: ecosystem_survey
         label: Data Custodian
         type: chado_contact_by_role_type_default
-        description: The core researcher responsible for data produced by this experiment. This is usually the principal investigator or long term researcher as this is the long term contact person for these data.
+        description: The core researcher responsible for data produced by this experiment. This is usually the principal investigator or long term researcher, as they are typically the long term contact person for these data.
         cardinality: -1
         required: false
         storage_settings:
@@ -107,19 +241,17 @@ fields:
                 linker_fkey_column: contact_id
         settings:
             termIdSpace: NCIT
-            termAccession: C165210
+            termAccession: 'C165210'
         display:
           view:
             default:
               region: content
-              label: above
-              weight: 20
+              label: inline
           form:
             default:
               region: content
-              weight: 20
 
-    -   name: experiment_curator
+    -   name: exp_curator
         content_type: ecosystem_survey
         label: Data Curator
         type: chado_contact_by_role_type_default
@@ -134,46 +266,21 @@ fields:
                 linker_fkey_column: contact_id
         settings:
             termIdSpace: NCIT
-            termAccession: C69141
+            termAccession: 'C69141'
         display:
           view:
             default:
               region: content
-              label: above
-              weight: 20
+              label: inline
           form:
             default:
               region: content
-              weight: 20
 
-    -   name: experiment_datalicenses
-        content_type: ecosystem_survey
-        label: Data License(s)
-        type: chado_contact_by_role_type_default
-        description: The licenses defining how each dataset can be used by others. Add one item per dataset generated by this experiment.
-        cardinality: -1
-        required: false
-        storage_settings:
-            storage_plugin_id: chado_storage
-            storage_plugin_settings:
-                base_table: project
-                linker_table: project_contact
-                linker_fkey_column: contact_id
-        settings:
-            termIdSpace: NCIT
-            termAccession: C43611
-        display:
-          view:
-            default:
-              region: content
-              label: above
-              weight: 21
-          form:
-            default:
-              region: content
-              weight: 21
+### -------------------------------------------------------------------------
+## FUNDING
+###
 
-    -   name: experiment_org
+    -   name: exp_org
         content_type: ecosystem_survey
         label: Research Organization
         type: chado_contact_by_role_type_default
@@ -193,118 +300,135 @@ fields:
           view:
             default:
               region: content
-              label: above
-              weight: 22
+              label: inline
           form:
             default:
               region: content
-              weight: 22
 
-    # Ideally this field would render as an embedded version of the grant project showing funding logos, etc.
-    -   name: experiment_funding
-        content_type: ecosystem_survey
-        label: Funding
-        type: chado_contact_by_role_type_default
-        description: An acknowledgement of all funding put towards this experiment.
-        cardinality: -1
-        required: false
-        storage_settings:
-            storage_plugin_id: chado_storage
-            storage_plugin_settings:
-                base_table: project
-                linker_table: project_contact
-                linker_fkey_column: contact_id
-        settings:
-            termIdSpace: EFO
-            termAccession: '0001736'
-        display:
-          view:
-            default:
-              region: content
-              label: above
-              weight: 22
-          form:
-            default:
-              region: content
-              weight: 22
+### -------------------------------------------------------------------------
+## PHENOMICS
+###
 
-    # @todo update to chado_pub_type_default with type specified Chado#140
-    -   name: experiment_citation
-        content_type: ecosystem_survey
-        label: Data Citation
-        type: chado_contact_by_role_type_default
-        description: The citation which should be used to provide attribution for data produced in this experiment. How one should use this citation is dictated by the data license.
-        cardinality: -1
-        required: false
-        storage_settings:
-            storage_plugin_id: chado_storage
-            storage_plugin_settings:
-                base_table: project
-                linker_table: project_contact
-                linker_fkey_column: contact_id
-        settings:
-            termIdSpace: NCIT
-            termAccession: C41196
-        display:
-          view:
-            default:
-              region: content
-              label: above
-              weight: 2
-          form:
-            default:
-              region: content
-              weight: 23
+    # -   name: exp_featureofinterest
+    #     content_type: ecosystem_survey
+    #     label: Key Measurements
+    #     type: chado_property_type_default
+    #     description: List the names of the core phenotypic traits you are interested in. These are usually very focused on your experimental question. If you are exploring shattering then examples can be "Shattered Seed Weight" or "Shattering Scale".
+    #     cardinality: -1
+    #     required: false
+    #     storage_settings:
+    #         storage_plugin_id: chado_storage
+    #         storage_plugin_settings:
+    #             base_table: project
+    #             prop_table: projectprop
+    #     settings:
+    #         termIdSpace: SOSA
+    #         termAccession: FeatureOfInterest
+    #     display:
+    #       view:
+    #         default:
+    #           region: content
+    #           label: above
+    #       form:
+    #         default:
+    #           region: content
 
-    -   name: experiment_pub
-        content_type: ecosystem_survey
-        label: Publication(s)
-        type: chado_pub_type_default
-        description: Any publications produced as part of this experiment or as a result of this experiment.
-        cardinality: -1
-        required: false
-        storage_settings:
-            storage_plugin_id: chado_storage
-            storage_plugin_settings:
-                base_table: project
-                linker_table: project_pub
-                linker_fkey_column: pub_id
-        settings:
-            termIdSpace: TPUB
-            termAccession: "0000002"
-        display:
-          view:
-            default:
-              region: content
-              label: above
-              weight: 24
-          form:
-            default:
-              region: content
-              weight: 24
+    # -   name: exp_pheno_method
+    #     content_type: ecosystem_survey
+    #     label: Methodology
+    #     type: chado_property_type_default
+    #     description: For each phenotypic trait you will be measuring, add an entry to this field describing exactly how you will be measuring it. For example, if your trait is "Canopy Height" then an entry in this field may be "Canopy height will be measured in centimeters using a measuring stick. Without touching the plants, the measuring stick will be placed in 3 random spots in the plot, the researcher will kneel down to reduce perspective bias and will read the height on the measuring stick of the highest point of the plant."
+    #     cardinality: -1
+    #     required: false
+    #     storage_settings:
+    #         storage_plugin_id: chado_storage
+    #         storage_plugin_settings:
+    #             base_table: project
+    #             prop_table: projectprop
+    #     settings:
+    #         termIdSpace: NCIT
+    #         termAccession: C86572
+    #     display:
+    #       view:
+    #         default:
+    #           region: content
+    #           label: above
+    #       form:
+    #         default:
+    #           region: content
 
-    -   name: experiment_description
-        content_type: ecosystem_survey
-        label: Experiment Summary
-        type: chado_text_type_default
-        description: Describe the experimental design and purpose in great detail. Include all the information you would need to analyze data from this experiment.
-        cardinality: 1
-        required: false
-        storage_settings:
-            storage_plugin_id: chado_storage
-            storage_plugin_settings:
-                base_table: project
-                base_column: description
-        settings:
-            termIdSpace: schema
-            termAccession: description
-        display:
-          view:
-            default:
-              region: content
-              label: above
-              weight: 100
-          form:
-            default:
-              region: content
-              weight: 100
+### -------------------------------------------------------------------------
+## FIELD EXPERIMENT DESIGN
+###
+
+    # -   name: exp_site_locations
+    #     content_type: ecosystem_survey
+    #     label: Experimental Site Locations
+    #     type: chado_property_type_default
+    #     description: Each location where the experiment was conducted. Reference the guidelines for more information.
+    #     cardinality: -1
+    #     required: false
+    #     storage_settings:
+    #         storage_plugin_id: chado_storage
+    #         storage_plugin_settings:
+    #             base_table: project
+    #             prop_table: projectprop
+    #     settings:
+    #         termIdSpace: AGRO
+    #         termAccession: '00000360'
+    #     display:
+    #       view:
+    #         default:
+    #           region: content
+    #           label: inline
+    #       form:
+    #         default:
+    #           region: content
+
+    # -   name: exp_design
+    #     content_type: ecosystem_survey
+    #     label: Experimental Design
+    #     type: chado_property_type_default
+    #     description: Describe the design of your experiment in detail following the guidelines provided.
+    #     cardinality: -1
+    #     required: false
+    #     storage_settings:
+    #         storage_plugin_id: chado_storage
+    #         storage_plugin_settings:
+    #             base_table: project
+    #             prop_table: projectprop
+    #     settings:
+    #         termIdSpace: PROCO
+    #         termAccession: '0000276'
+    #     display:
+    #       view:
+    #         default:
+    #           region: content
+    #           label: above
+    #       form:
+    #         default:
+    #           region: content
+
+    # -   name: exp_timepoints
+    #     content_type: ecosystem_survey
+    #     label: Timepoints
+    #     type: chado_property_type_default
+    #     description: The timepoints that data was collected at. See the instructions above for guidelines directed at specific types of experiments.
+    #     cardinality: -1
+    #     required: false
+    #     storage_settings:
+    #         storage_plugin_id: chado_storage
+    #         storage_plugin_settings:
+    #             base_table: project
+    #             prop_table: projectprop
+    #     settings:
+    #         termIdSpace: EFO
+    #         termAccession: '0000724'
+    #     display:
+    #       view:
+    #         default:
+    #           region: content
+    #           label: inline
+    #       form:
+    #         default:
+    #           region: content

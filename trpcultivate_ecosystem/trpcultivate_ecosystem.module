@@ -27,6 +27,7 @@ function trpcultivate_ecosystem_help($route_name, RouteMatchInterface $route_mat
 
 /**
  * Insert terms needed by this module into the default chado instance.
+ *
  * Expected but not required to be run by a Tripal Job.
  */
 function trpcultivate_ecosystem_install_terms() {
@@ -37,6 +38,7 @@ function trpcultivate_ecosystem_install_terms() {
 
 /**
  * Import content type collections needed by this module.
+ *
  * Expected but not required to be run by a Tripal Job.
  */
 function trpcultivate_ecosystem_import_contenttypes() {
@@ -45,7 +47,7 @@ function trpcultivate_ecosystem_import_contenttypes() {
     'trpcultivate_ecosystem',
   ];
 
-  // Import the content types
+  // Import the content types.
   $content_type_setup = \Drupal::service('tripal.tripalentitytype_collection');
   $content_type_setup->install($collections);
 

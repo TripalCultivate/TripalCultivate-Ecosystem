@@ -442,123 +442,172 @@ fields:
 ## Related: projectprop, project_pub, project_relationship
 ##          array_project, nd_experiment_project, project_analysis, project_contact, project_dbxref, project_feature, project_stock
 
-    -   name: site_name
-        content_type: grassland_site
-        label: Name
-        type: chado_string_type_default
+    -   name: 'site_name'
+        content_type: 'grassland_site'
+        label: 'Name'
+        type: 'chado_string_type_default'
         description: 'The full name of the grassland site.'
         cardinality: 1
         required: true
         storage_settings:
-            storage_plugin_id: chado_storage
+            storage_plugin_id: 'chado_storage'
             storage_plugin_settings:
-                base_table: project
-                base_column: name
+                base_table: 'project'
+                base_column: 'name'
             max_length: 255
         settings:
-            termIdSpace: schema
-            termAccession: name
+            termIdSpace: 'schema'
+            termAccession: 'name'
         display:
           view:
             default:
-              region: hidden
+              region: 'hidden'
           form:
             default:
-              region: content
+              region: 'content'
 
-    -   name: site_dbxref
-        content_type: grassland_site
-        label: Digital object identifiers (DOI)
-        type: chado_dbxref_type_default
-        description: Any persistant digital identifiers (i.e. DOIs) associated with this grassland site.
+    -   name: 'site_dbxref'
+        content_type: 'grassland_site'
+        label: 'Digital object identifiers (DOI)'
+        type: 'chado_dbxref_type_default'
+        description: 'Any persistant digital identifiers (i.e. DOIs) associated with this grassland site.'
         cardinality: -1
         required: false
         storage_settings:
-            storage_plugin_id: chado_storage
+            storage_plugin_id: 'chado_storage'
             storage_plugin_settings:
-                base_table: project
-                linker_table: project_dbxref
-                linker_fkey_column: dbxref_id
+                base_table: 'project'
+                linker_table: 'project_dbxref'
+                linker_fkey_column: 'dbxref_id'
         settings:
-            termIdSpace: SBO
+            termIdSpace: 'SBO'
             termAccession: '0000552'
         display:
           view:
             default:
-              region: hidden
+              region: 'hidden'
           form:
             default:
-              region: content
+              region: 'content'
 
-    -   name: site_description
-        content_type: grassland_site
-        label: Description
-        type: chado_text_type_default
-        description: A general description of the grassland site including management practices or landscape context.
+    -   name: 'site_description'
+        content_type: 'grassland_site'
+        label: 'Description'
+        type: 'chado_text_type_default'
+        description: 'A general description of the grassland site including management practices or landscape context.'
         cardinality: 1
         required: false
         storage_settings:
-            storage_plugin_id: chado_storage
+            storage_plugin_id: 'chado_storage'
             storage_plugin_settings:
-                base_table: project
-                base_column: description
+                base_table: 'project'
+                base_column: 'description'
         settings:
-            termIdSpace: schema
-            termAccession: description
+            termIdSpace: 'schema'
+            termAccession: 'description'
         display:
           view:
             default:
-              region: content
-              label: hidden
+              region: 'content'
+              label: 'hidden'
           form:
             default:
-              region: content
+              region: 'content'
 
-    -   name: site_type
-        content_type: grassland_site
-        label: Type
-        type: chado_additional_type_type_default
-        description: The type of experiment. This is fixed for a single content type but is needed in the underlying data storage.
+    -   name: 'site_type'
+        content_type: 'grassland_site'
+        label: 'Type'
+        type: 'chado_additional_type_type_default'
+        description: 'The type of experiment. This is fixed for a single content type but is needed in the underlying data storage.'
         cardinality: 1
         required: true
         storage_settings:
-            storage_plugin_id: chado_storage
+            storage_plugin_id: 'chado_storage'
             storage_plugin_settings:
-                base_table: project
-                type_table: project
-                type_column: type_id
+                base_table: 'project'
+                type_table: 'project'
+                type_column: 'type_id'
         settings:
-            termIdSpace: rdfs
-            termAccession: type
-            fixed_value: "local:grassland_site"
+            termIdSpace: 'rdfs'
+            termAccession: 'type'
+            fixed_value: 'local:grassland_site'
         display:
           view:
             default:
-              region: hidden
+              region: 'hidden'
           form:
             default:
-              region: content
+              region: 'content'
 
-    -   name: site_location
-        content_type: grassland_site
-        label: Site Location
-        type: chado_property_type_default
-        description: The location of the grassland site.
+    -   name: 'site_location'
+        content_type: 'grassland_site'
+        label: 'Site Location'
+        type: 'chado_property_type_default'
+        description: 'The location of the grassland site using natural land descriptors (e.g. 3km SE of Rosetown). These should be descriptors that are okay to share with the public.'
         cardinality: 1
         required: false
         storage_settings:
-            storage_plugin_id: chado_storage
+            storage_plugin_id: 'chado_storage'
             storage_plugin_settings:
-                base_table: project
-                prop_table: projectprop
+                base_table: 'project'
+                prop_table: 'projectprop'
         settings:
-            termIdSpace: AGRO
+            termIdSpace: 'AGRO'
             termAccession: '00000360'
         display:
           view:
             default:
-              region: content
-              label: inline
+              region: 'content'
+              label: 'inline'
           form:
             default:
-              region: content
+              region: 'content'
+
+    -   name: 'site_coordinates'
+        content_type: 'grassland_site'
+        label: 'GPS Coordinates'
+        type: 'chado_property_type_default'
+        description: 'The most precise coordinates for the site that are available. Note: These will be made available to privileged users and shown with less precision to public users.'
+        cardinality: 1
+        required: false
+        storage_settings:
+            storage_plugin_id: 'chado_storage'
+            storage_plugin_settings:
+                base_table: 'project'
+                prop_table: 'projectprop'
+        settings:
+            termIdSpace: 'AGRO'
+            termAccession: '00000360'
+        display:
+          view:
+            default:
+              region: 'content'
+              label: 'inline'
+          form:
+            default:
+              region: 'content'
+
+    -   name: 'site_datacollector'
+        content_type: 'grassland_site'
+        label: 'Sample Collection Researchers'
+        type: 'chado_contact_by_role_type_default'
+        description: 'The researcher(s) and/or staff who are collecting the samples at this grassland site. This may include researchers from different projects.'
+        cardinality: -1
+        required: false
+        storage_settings:
+            storage_plugin_id: 'chado_storage'
+            storage_plugin_settings:
+                base_table: 'project'
+                linker_table: 'project_contact'
+                linker_fkey_column: 'contact_id'
+        settings:
+            termIdSpace: 'AGRO'
+            termAccession: '00000379'
+        display:
+          view:
+            default:
+              region: 'content'
+              label: 'inline'
+          form:
+            default:
+              region: 'content'

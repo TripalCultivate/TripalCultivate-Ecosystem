@@ -1,10 +1,14 @@
-ARG drupalversion=11.1.x-dev
-ARG phpversion=8.3
-ARG pgsqlversion=16
-FROM knowpulse/tripalcultivate-base:drupal${drupalversion}-php${phpversion}-pgsql${pgsqlversion}
+ARG drupalversion='11.3.x-dev'
+ARG phpversion='8.5'
+ARG postgresqlversion='18'
+ARG buildplatform='linux/amd64'
+FROM --platform=${buildplatform} knowpulse/tripalcultivate-base:drupal${drupalversion}-php${phpversion}-pgsql${postgresqlversion}
 
 COPY . /var/www/drupal/web/modules/contrib/TripalCultivate-Ecosystem
 WORKDIR /var/www/drupal/web/modules/contrib/TripalCultivate-Ecosystem
+
+RUN rm ./phpunit.xml
+RUN bash /var/www/drupal/web/modules/contrib/tripal/set_phpunit_config.sh
 
 RUN service postgresql restart \
   && drush en trpcultivate_ecosystem --yes \

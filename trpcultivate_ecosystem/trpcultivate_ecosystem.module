@@ -5,6 +5,7 @@
  * Contains all hook implementations for this module.
  */
 
+use Drupal\Core\Hook\Attribute\LegacyHook;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
@@ -12,20 +13,14 @@ use Drupal\tripal_layout\Controller\TripalEntityUILayoutController;
 
 /**
  * Implements hook_help().
+ *
+ * This legacy hook is only run for Drupal < 11, and is replaced by class
+ * Drupal\trpcultivate_ecosystem\Hook\TripalCultivateGeneticsHooks in
+ * trpcultivate_ecosystem/src/Hook/TripalCultivateGeneticsHooks.php.
  */
+#[LegacyHook]
 function trpcultivate_ecosystem_help($route_name, RouteMatchInterface $route_match) {
-  switch ($route_name) {
-    // Provides the module overview in the help tab.
-    case 'help.page.trpcultivate_ecosystem':
-      $output = '';
-      $output .= '<h3>' . t('About') . '</h3>';
-
-      $output .= '<p>' . t('This module provides content types, fields and importers focused on surveying ecosystem plants and insects.') . '</p>';
-
-      return $output;
-
-    default:
-  }
+  return \Drupal::service('trpcultivate_ecosystem.hooks')->help($route_name, $route_match);
 }
 
 /**

@@ -7,8 +7,9 @@ FROM --platform=${buildplatform} knowpulse/tripalcultivate-base:drupal${drupalve
 COPY . /var/www/drupal/web/modules/contrib/TripalCultivate-Ecosystem
 WORKDIR /var/www/drupal/web/modules/contrib/TripalCultivate-Ecosystem
 
-RUN rm ./phpunit.xml
-RUN bash /var/www/drupal/web/modules/contrib/tripal/set_phpunit_config.sh
+RUN rm ./phpunit.xml \
+  && bash /var/www/drupal/web/modules/contrib/tripal/set_phpunit_config.sh \
+  && cp /var/www/drupal/web/modules/contrib/TripalCultivate/.codingstandards.xml ./phpcs.xml
 
 RUN service postgresql restart \
   && drush en trpcultivate_ecosystem --yes \

@@ -1,0 +1,3 @@
+services:
+  trpcultivate_ecosystem.hooks:
+    class: 'Drupal\trpcultivate_ecosystem\Hook\TripalCultivateEcosystemHooks'

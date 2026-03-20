@@ -12,8 +12,8 @@ use Drupal\Core\Routing\RouteMatchInterface;
  * Implements hook_help().
  *
  * This legacy hook is only run for Drupal < 11, and is replaced by class
- * Drupal\trpcultivate_ecosystem\Hook\TripalCultivateGeneticsHooks in
- * trpcultivate_ecosystem/src/Hook/TripalCultivateGeneticsHooks.php.
+ * Drupal\trpcultivate_ecosystem\Hook\TripalCultivateEcosystemHooks in
+ * trpcultivate_ecosystem/src/Hook/TripalCultivateEcosystemHooks.php.
  */
 #[LegacyHook]
 function trpcultivate_ecosystem_help($route_name, RouteMatchInterface $route_match) {

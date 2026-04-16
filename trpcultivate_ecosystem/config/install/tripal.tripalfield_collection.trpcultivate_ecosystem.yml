@@ -611,3 +611,77 @@ fields:
           form:
             default:
               region: 'content'
+
+## SPECIES
+
+    -   name: 'org_adaptation'
+        content_type: 'organism'
+        label: 'Adaptation & Use'
+        type: 'chado_property_type_default'
+        description: ''
+        cardinality: -1
+        required: false
+        storage_settings:
+            storage_plugin_id: 'chado_storage'
+            storage_plugin_settings:
+                base_table: 'organism'
+                prop_table: 'organismprop'
+        settings:
+            termIdSpace: 'NCIT'
+            termAccession: 'C158868'
+        display:
+          view:
+            default:
+              region: 'content'
+              label: 'above'
+          form:
+            default:
+              region: 'content'
+
+    -   name: 'org_idfeature'
+        content_type: 'organism'
+        label: 'Identification Features'
+        type: 'chado_property_type_default'
+        description: ''
+        cardinality: -1
+        required: false
+        storage_settings:
+            storage_plugin_id: 'chado_storage'
+            storage_plugin_settings:
+                base_table: 'organism'
+                prop_table: 'organismprop'
+        settings:
+            termIdSpace: 'SOSA'
+            termAccession: 'FeatureOfInterest'
+        display:
+          view:
+            default:
+              region: 'content'
+              label: 'above'
+          form:
+            default:
+              region: 'content'
+
+    -   name: 'org_pref_enviro'
+        content_type: 'organism'
+        label: 'Perferred Environmental Conditions'
+        type: 'chado_property_type_default'
+        description: ''
+        cardinality: -1
+        required: false
+        storage_settings:
+            storage_plugin_id: 'chado_storage'
+            storage_plugin_settings:
+                base_table: 'organism'
+                prop_table: 'organismprop'
+        settings:
+            termIdSpace: 'ENVO'
+            termAccession: '01000739'
+        display:
+          view:
+            default:
+              region: 'content'
+              label: 'above'
+          form:
+            default:
+              region: 'content'
